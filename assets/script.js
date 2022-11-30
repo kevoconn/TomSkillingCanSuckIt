@@ -2,12 +2,6 @@
 // div on html
 let searchBtn = document.querySelector("#searchBtn");
 let requestUrl = [];
-let searchCity = document.querySelector("#searchCity");
-let searchInput = document.querySelector("#div-city");
-let cityTemp = document.querySelector("$temp");
-let cityHumidity = document.querySelector("$humidity");
-let cityDscrptn = document.querySelector("$description");
-let cityWind = document.querySelector("$wind");
 
 
 
@@ -16,35 +10,45 @@ function init() {
   //grab last search results from local storage and place on left side of page
 }
 
-function requestCity() {
-  // set assign variable to value of textbox on html page
-  console.log();
-  let city = "Chicago";
-  console.log();
-  let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=d37ae3d48dcfb1d283849a04c6912cd3`;
+function weather() {
+  let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=Chicago&units=imperial&appid=f30ccb78a681804fbfff4e5128eff799`;
   fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-      console.log(response);
-    })
-    .then(function (data) {
-      // code goes here
-      //chicago
-      console.log(data);
-
-      data.city.forEach((cityname) => {
-        let titleEl = document.createElement("h3");
-        titleEl.innerHTML = cityname.name;
-      });
-      data.list.forEach((weather) => {
-        let listEl = document.createElement("li");
-        listEl.innerHTML = weather.main;
-        console.log(weather);
-      });
-      // chicago
-      // temp, wind, and humidity goes here
-    });
+ .then(function (response) {
+   return response.json();
+  })
+ .then(function (data) {});
+ console.log(data)
 }
+
+// // function requestCity() {
+//   // set assign variable to value of textbox on html page
+//   console.log();
+//   let city = "Chicago";
+//   console.log();
+//   let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=f30ccb78a681804fbfff4e5128eff799`;
+//   fetch(requestUrl)
+//     .then(function (response) {
+//       return response.json();
+//       console.log(response);
+//     })
+//     .then(function (data) {
+//       // code goes here
+//       //chicago
+//       console.log(data);
+
+//       data.city.forEach((cityname) => {
+//         let titleEl = document.createElement("h3");
+//         titleEl.innerHTML = cityname.name;
+//       });
+//       data.list.forEach((weather) => {
+//         let listEl = document.createElement("li");
+//         listEl.innerHTML = weather.main;
+//         console.log(weather);
+//       });
+//       // chicago
+//       // temp, wind, and humidity goes here
+//     });
+// }
 
 //*function search() { //TODO:remove bracket
 //alert("hi");
@@ -64,7 +68,7 @@ function requestCity() {
 // event listeners
 init();
 
-searchBtn.addEventListener("click", requestCity);
+searchBtn.addEventListener("click", searchCity);
 //search button event listener
 
 //click on past results search buttons

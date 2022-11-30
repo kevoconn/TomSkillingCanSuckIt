@@ -6,31 +6,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/style.css">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700&display=swap" rel="stylesheet">
     <title>Tom Skilling Can Suck It</title>
     <!--Script for tailwinds-->
 </head>
 
 <body>
-    <header class="text-5xl p-2 m-2 b-2 font-mono text-center"> Tom Skilling Can Suck It</header>
+    <header class=""> Tom Skilling Can Suck It</header>
 
     <!-- Weather Dashboard Header  -->
 
-<input class="" type="city"><input>
-    <!-- City Search Feature-->
-    <button class="p-3 bg-gray-300" id="searchBtn">Search</button>
-
-  <div id="searchCity">search city</div>
+    <div class="weatherBox">
+        <div class="card">
+            <div class="search">
+                <input type="text" class="search-bar">
+                <button>Search</button>
+            </div>
+            <div class="weather">
+                <div class="temperature">temp</div>
+                <h1 class="city">city name goes here</h1>
+                <div class="description">forecast</div>
+                <div class="humidity">humidity</div>
+                <div class="wind">wind</div>
+            </div>
+        </div>
+    </div>
 
 
     <!--last ten searches-->
 
     <!-- Current City-->
     <div id="div-city">
-        <div class="temp">Temp</div>
-        <h1 class="city">City name goes here</h1>
-        <div class="description">Forecast</div>
-        <div class="humidity">humidity</div> 
-        <div class="wind">wind</div>
+
     </div>
 
 
