@@ -3,22 +3,51 @@
 let searchBtn = document.querySelector("#searchBtn");
 let requestUrl = [];
 
-
-
 //functions
 function init() {
   //grab last search results from local storage and place on left side of page
 }
+let weather = {
+  fetchWeather: function (city) {
+    let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=f30ccb78a681804fbfff4e5128eff799`;
+    fetch(requestUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then((data) => this.displayWeather(data));
+      console.log(city)
+  },
 
-function weather() {
-  let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=Chicago&units=imperial&appid=f30ccb78a681804fbfff4e5128eff799`;
-  fetch(requestUrl)
- .then(function (response) {
-   return response.json();
-  })
- .then(function (data) {});
- console.log(data)
-}
+  displayWeather: function (data) {
+    let name = data;
+    let description = data.list[0].weather[0].description;
+    let temp = data.list[0].main.temp;
+    let humidity = data.list[0].main.humidity;
+    let speed  = data.list[0].wind.speed;
+    console.log(name, description, temp, humidity, speed);
+    
+
+    document.querySelector(".city").innerText = name;
+    //document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon + ".png";
+    document.querySelector(".description").innerText = description;
+    document.querySelector(".temperature").innerText = temp + "°F";
+    document.querySelector(".humidity").innerText = "humidity: " + "%";
+    document.querySelector(".wind").innerText = "Wind speed: " + speed + " mph";
+  },
+  search: function () {
+    this.fetchWeather(document.querySelector(".search-bar").value);
+  },
+};
+
+document.querySelector(".search button").addEventListener("click", function () {
+  weather.search();
+});
+
+document.querySelector(".search-bar").addEventListener("keyup", function (event) {
+  if (event.key == "Enter") {
+    weather.search();
+  }
+});
 
 // // function requestCity() {
 //   // set assign variable to value of textbox on html page
@@ -66,9 +95,9 @@ function weather() {
 
 //function calls
 // event listeners
-init();
+//init();
 
-searchBtn.addEventListener("click", searchCity);
+//searchBtn.addEventListener("click", searchCity);
 //search button event listener
 
 //click on past results search buttons
