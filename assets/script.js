@@ -19,19 +19,19 @@ let weather = {
   },
 
   displayWeather: function (data) {
-    let name = data;
+    let name = data.city.name;
     let description = data.list[0].weather[0].description;
     let temp = data.list[0].main.temp;
     let humidity = data.list[0].main.humidity;
     let speed  = data.list[0].wind.speed;
-    console.log(name, description, temp, humidity, speed);
-    
+    console.log(humidity);
+
 
     document.querySelector(".city").innerText = name;
     //document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon + ".png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".temperature").innerText = temp + "°F";
-    document.querySelector(".humidity").innerText = "humidity: " + "%";
+    document.querySelector(".humidity").innerText = "humidity: " + humidity + "%";
     document.querySelector(".wind").innerText = "Wind speed: " + speed + " mph";
   },
   search: function () {
