@@ -1,11 +1,14 @@
 // global variables
 // div on html
 let searchBtn = document.querySelector("#searchBtn");
-let requestUrl = [];
+let cities = JSON.parse(localStorage.getItem("cities")) || [];
 
 //functions
 function init() {
   //grab last search results from local storage and place on left side of page
+  cities.forEach(city => {
+    document.querySelector(".pastSearch").innerHTML += `<button data-city="${city}">${city}</button>`
+  })
 }
 let weather = {
   fetchWeather: function (city) {
@@ -15,31 +18,46 @@ let weather = {
         return response.json();
       })
       .then((data) => this.displayWeather(data));
-      console.log(city)
+    console.log(city);
   },
 
   displayWeather: function (data) {
+    document.querySelector(".forecast").innerHTML = "";
+    console.log(data)
     let name = data.city.name;
+    let icon = data.list[0].weather[0].icon;
     let description = data.list[0].weather[0].description;
     let temp = data.list[0].main.temp;
     let humidity = data.list[0].main.humidity;
-    let speed  = data.list[0].wind.speed;
+    let speed = data.list[0].wind.speed;
     console.log(humidity);
-
+    cities.push(name);
+    localStorage.setItem("cities", JSON.stringify(cities))
 
     document.querySelector(".city").innerText = name;
-    //document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon + ".png";
+    document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon + ".png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".temperature").innerText = temp + "°F";
-    document.querySelector(".humidity").innerText = "humidity: " + humidity + "%";
-    document.querySelector(".wind").innerText = "Wind speed: " + speed + " mph";
+    document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
+    document.querySelector(".wind").innerText = "Wind Speed: " + speed + " mph";
+    console.log(icon);
+
+    data.list.forEach(day => {
+      let midnight = day.dt_txt.split(" ")[1];
+      if(midnight === "00:00:00"){
+        document.querySelector(".forecast").innerHTML += `<div class="cardOne"><div> ${day.dt_txt} </div><div> ${day.main.temp} </div></div>`
+      }
+      
+      
+    });
   },
+
   search: function () {
     this.fetchWeather(document.querySelector(".search-bar").value);
   },
 };
 
-document.querySelector(".search button").addEventListener("click", function () {
+document.querySelector(".searchBtn").addEventListener("click", function () {
   weather.search();
 });
 
@@ -48,7 +66,7 @@ document.querySelector(".search-bar").addEventListener("keyup", function (event)
     weather.search();
   }
 });
-
+init();
 // // function requestCity() {
 //   // set assign variable to value of textbox on html page
 //   console.log();
@@ -95,7 +113,7 @@ document.querySelector(".search-bar").addEventListener("keyup", function (event)
 
 //function calls
 // event listeners
-//init();
+
 
 //searchBtn.addEventListener("click", searchCity);
 //search button event listener

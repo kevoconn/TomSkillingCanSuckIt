@@ -1,5 +1,7 @@
 body{
     background-image: url("https://source.unsplash.com/1600x900/?weather");
+    background-repeat: no-repeat;
+    background-size: cover;
     margin: none;
     overflow: hidden;
 
@@ -15,7 +17,12 @@ body{
     
     
 }
-
+.description {
+    text-transform: capitalize;
+}
+.forecast{
+    display: flex;
+}
 .card{
     background: #000000d0;
     color: white;
@@ -26,11 +33,14 @@ body{
     margin: 1em;
 }
 header{
+    background: #000000d0;
+    padding: 1em;
+    border-radius: 30px;
    display: flex;
    align-items: center;
    justify-content: center;
     color: white;
-    /* font-size: 100px; */
+    font-size: xx-large;
     font-weight: 700;
     font-family: 'Noto Serif Display', serif;
 }
@@ -38,6 +48,7 @@ header{
 display: flex;
 align-items: center;
 justify-content: space-around;
+
 
 }
 .search-bar{
@@ -47,7 +58,7 @@ justify-content: space-around;
     border-radius: 24px;
     background: #7c7c7c2b;
     color: white;
-    
+
     
 }
 button {
