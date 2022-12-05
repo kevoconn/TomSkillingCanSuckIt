@@ -7,47 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./assets/style.css">
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700&display=swap" rel="stylesheet">
     <title>Tom Skilling Can Suck It</title>
     <!--Script for tailwinds-->
 </head>
 
 <body>
+  
     <header class=""> Tom Skilling Can Suck It</header>
 
-    <!-- Weather Dashboard Header  -->
-    <!-- <div class="search">
+    <!-- Weather Dashboard Header 
+    <div class="search">
         <input type="text" class="search-bar">
         <button>Search</button>
     </div> -->
 
     <div class="weatherBox">
-        
-      
+
+        <div class="pastSearch">Past Search</div>
+     
+            <div class="weather">                
         <div class="card">
-           
-            <div class="weather">
-                <div class="search">
-                    <input type="text" class="search-bar">
-                    <button class="searchBtn">Search</button>
-                </div>
-                <h1 class="city">name</h1>
+            <div class="search">
+                <input type="text" class="search-bar">
+                <button class="searchBtn">Search</button>
+            </div>                
+                <h1 class="city">City</h1>
                 <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon">
-                <div class="temperature"></div>
-                <div class="description"></div>
-                <div class="humidity"></div>
-                <div class="wind"></div>
+                <div class="temperature">Temperature</div>
+                <div class="description">Description</div>
+                <div class="humidity">Humidity</div>
+                <div class="wind">Wind</div>
             </div>
 
         </div>
         <div class="forecast"></div>
-        <div class="pastSearch"></div>
     </div>
 
     <!--last ten searches-->
-    
+
 
     <!-- Current City-->
     <div id="div-city">
@@ -56,6 +54,7 @@
 
 
     <!--5 day forecast-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.6/dayjs.min.js" integrity="sha512-hcV6DX35BKgiTiWYrJgPbu3FxS6CsCjKgmrsPRpUPkXWbvPiKxvSVSdhWX0yXcPctOI2FJ4WP6N1zH+17B/sAA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./assets/script.js"></script>
 </body>
 
