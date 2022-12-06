@@ -7,7 +7,7 @@ let cities = JSON.parse(localStorage.getItem("cities")) || [];
 function init() {
   //grab last search results from local storage and place on left side of page
   cities.forEach((city) => {
-    document.querySelector(".pastSearch").innerHTML += `<button data-city="${city}">${city}</button>`;
+    document.querySelector(".pastSearch").innerHTML += `<button class = "city-btn" data-city="${city}">${city}</button>`;
   });
 }
 let weather = {
@@ -32,6 +32,7 @@ let weather = {
     let speed = data.list[0].wind.speed;
     console.log(humidity);
     cities.push(name);
+    cities = cities.slice(0, 5);
     localStorage.setItem("cities", JSON.stringify(cities));
 
     document.querySelector(".city").innerText = name;
@@ -50,6 +51,7 @@ let weather = {
         let date = dayjs(day.dt_txt).format("M/D/YYYY");
         document.querySelector(".forecast").innerHTML += 
         `<div class="cardOne">
+        <div>${name}</div>
         <div>${date} </div>
         <img src = "${"https://openweathermap.org/img/wn/" + icon + '.png'}">
         <div>${day.main.temp + "°F"} </div>
@@ -78,15 +80,18 @@ document.querySelector(".search-bar").addEventListener("keyup", function (event)
 });
 
 init();
-document.querySelector(".pastSearch").addEventListener("click", cities);
-console.log(weather)
+document.querySelector(".pastSearch").addEventListener("click", function (event){
+ let city = event.target.getAttribute("data-city")
+ weather.fetchWeather(city)
+} );
 
-//GIVEN a weather dashboard with form inputs
-//WHEN I search for a city
-//THEN I am presented with current and future conditions for that city and that city is added to the search history
-//WHEN I view current weather conditions for that city
-//THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
-//WHEN I view future weather conditions for that city
-//THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-//WHEN I click on a city in the search history
-//THEN I am again presented with current and future conditions for that city
+
+// GIVEN a weather dashboard with form inputs
+// WHEN I search for a city
+// THEN I am presented with current and future conditions for that city and that city is added to the search history
+// WHEN I view current weather conditions for that city
+// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
+// WHEN I view future weather conditions for that city
+// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+// WHEN I click on a city in the search history
+// THEN I am again presented with current and future conditions for that city
